@@ -1,4 +1,4 @@
-#Analysis of Layoffs During the COVID-19 Pandemic Using SQL
+# **Analysis of Layoffs During the COVID-19 Pandemic Using SQL**
 
 The COVID-19 pandemic caused a global economic disruption, leading to widespread layoffs across various industries and regions. This project focuses on analyzing layoff data during this challenging period to uncover trends, patterns, and insights. The analysis provides an understanding of how industries, countries, and companies were impacted by layoffs during the pandemic, helping stakeholders make informed decisions for the future.
 The dataset, sourced from Kaggle Layoffs 2022, tracks layoffs across industries, companies, and locations.
