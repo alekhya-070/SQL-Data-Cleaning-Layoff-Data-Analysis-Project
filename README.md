@@ -52,3 +52,6 @@ Next Steps
 Perform exploratory data analysis to identify patterns and trends.
 Use the cleaned data to build visualizations or dashboards for insightful reporting.
 Explore predictive modeling opportunities based on layoff trends.
+
+EDA:
+This project involves exploratory data analysis (EDA) of global layoff data stored in a SQL database. It identifies trends, patterns, and insights, such as the largest layoffs, affected industries, locations, and temporal patterns. The goal is to derive actionable insights and support strategic decision-making.
