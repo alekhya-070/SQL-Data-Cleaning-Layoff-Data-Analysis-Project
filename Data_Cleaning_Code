@@ -1,0 +1,59 @@
+-- SQL Project - Data Cleaning
+
+-- Title: Layoffs 2022 Data Cleaning
+
+-- Dataset: https://www.kaggle.com/datasets/swaptr/layoffs-2022
+
+-- Step 1: Create a staging table for cleaning purposes
+CREATE TABLE world_layoffs.layoffs_staging 
+LIKE world_layoffs.layoffs;
+
+INSERT layoffs_staging 
+SELECT * FROM world_layoffs.layoffs;
+
+-- Step 2: Remove duplicates
+WITH DELETE_CTE AS (
+    SELECT company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions, 
+           ROW_NUMBER() OVER (PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions) AS row_num
+    FROM world_layoffs.layoffs_staging
+)
+DELETE FROM world_layoffs.layoffs_staging
+WHERE (company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions, row_num) IN (
+    SELECT company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions, row_num
+    FROM DELETE_CTE
+) AND row_num > 1;
+
+-- Step 3: Standardize data
+UPDATE world_layoffs.layoffs_staging2
+SET industry = NULL
+WHERE industry = '';
+
+UPDATE layoffs_staging2 t1
+JOIN layoffs_staging2 t2
+ON t1.company = t2.company
+SET t1.industry = t2.industry
+WHERE t1.industry IS NULL
+AND t2.industry IS NOT NULL;
+
+UPDATE layoffs_staging2
+SET industry = 'Crypto'
+WHERE industry IN ('Crypto Currency', 'CryptoCurrency');
+
+UPDATE layoffs_staging2
+SET country = TRIM(TRAILING '.' FROM country);
+
+UPDATE layoffs_staging2
+SET `date` = STR_TO_DATE(`date`, '%m/%d/%Y');
+
+ALTER TABLE layoffs_staging2
+MODIFY COLUMN `date` DATE;
+
+-- Step 4: Handle null values and clean up data
+DELETE FROM world_layoffs.layoffs_staging2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL;
+
+ALTER TABLE layoffs_staging2
+DROP COLUMN row_num;
+
+SELECT * FROM world_layoffs.layoffs_staging2;
