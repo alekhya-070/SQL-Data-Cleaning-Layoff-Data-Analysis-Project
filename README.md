@@ -55,3 +55,45 @@ Explore predictive modeling opportunities based on layoff trends.
 
 EDA:
 This project involves exploratory data analysis (EDA) of global layoff data stored in a SQL database. It identifies trends, patterns, and insights, such as the largest layoffs, affected industries, locations, and temporal patterns. The goal is to derive actionable insights and support strategic decision-making.
+
+Objectives
+Perform exploratory data analysis (EDA) to understand the dataset.
+Identify patterns and trends in layoffs by company, location, and industry.
+Calculate metrics like rolling totals and rankings for better insights.
+Summarize the impact of layoffs across time periods.
+
+Dataset Description
+The dataset (layoffs_staging2) contains information about layoffs, including:
+company: Name of the company.
+total_laid_off: Number of employees laid off.
+percentage_laid_off: Percentage of the workforce laid off.
+location: Location of the layoffs.
+country: Country of the company.
+date: Date of the layoff event.
+industry: Industry of the company.
+funds_raised_millions: Funds raised by the company in millions.
+stage: Company's stage (e.g., startup, established).
+
+Steps
+1. Explore the Dataset
+Use basic queries to examine the data, check for null values, and understand its structure.
+View all data.
+Identify the maximum layoffs in a single event.
+Check the range of percentage layoffs.
+3. Analyze Companies with 100% Layoffs
+Find companies where the entire workforce was laid off and explore patterns like funds raised or industry type.
+4. Aggregated Insights
+Identify companies with the largest layoffs, both for single events and over time.
+Analyze layoffs by location, country, and industry.
+5. Temporal Analysis
+Examine layoffs by year.
+Calculate rolling totals of layoffs by month.
+6. Advanced Queries
+Use WITH and window functions for insights like top companies by layoffs per year and rolling totals.
+
+Outcome
+Uncovered companies and locations most affected by layoffs.
+Derived insights into temporal trends like yearly or monthly layoffs.
+Identified industries and company stages prone to layoffs.
+Built foundational SQL skills for EDA and advanced analysis using window functions.
+
